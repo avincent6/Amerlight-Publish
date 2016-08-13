@@ -142,3 +142,6 @@ procfile
 gunicorn
 
 pip install --user [package]
+secret key
+!8g-h4lvfju28c(6isxm@1s#x9a(_@t4@t6l8fi8-*h+hmh7)8
+P3#southport
