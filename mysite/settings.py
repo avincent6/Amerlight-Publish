@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 import dj_database_url
 from django.core.exceptions import ImproperlyConfigured
-from local_settings import *
 
 def get_env_variable(var_name):
     """ Get the environment variable or return exception """
