@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY=os.environ['SECRET_KEY']
+SECRET_KEY='!8g-h4lvfju28c(6isxm@1s#x9a(_@t4@t6l8fi8-*h+hmh7)8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
@@ -89,7 +89,7 @@ DATABASES = {
         'PORT': '', # Set to empty string for default.
        }
     }
-    
+
 DATABASES = {'default': dj_database_url.config(default='mysql://localhost')}
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
