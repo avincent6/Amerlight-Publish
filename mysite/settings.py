@@ -11,9 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
-import sys
-import urlparse
-
+import dj_database_url
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -82,7 +80,17 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ['DATABASE_NAME'],
+        'USER': os.environ['DATABASE_USERNAME'],
+        'PASSWORD': os.environ['DATABASE_PASSWORD'],
+        'HOST': '127.0.0.1', # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '', # Set to empty string for default.
+       }
+    }
+DATABASES = {'default': dj_database_url.config(default='mysql://localhost')}
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
@@ -150,33 +158,3 @@ STATICFILES_FINDERS = (
 CSRF_COOKIE_SECURE = True
 
 # Email form
-urlparse.uses_netloc.append('mysql')
-
-try:
-
-    # Check to make sure DATABASES is set in settings.py file.
-    # If not default to {}
-
-    if 'DATABASES' not in locals():
-        DATABASES = {}
-
-    if 'DATABASE_URL' in os.environ:
-        url = urlparse.urlparse(os.environ['DATABASE_URL'])
-
-        # Ensure default database exists.
-        DATABASES['default'] = DATABASES.get('default', {})
-
-        # Update with environment configuration.
-        DATABASES['default'].update({
-            'NAME': url.path[1:],
-            'USER': url.username,
-            'PASSWORD': url.password,
-            'HOST': url.hostname,
-            'PORT': url.port,
-        })
-
-
-        if url.scheme == 'mysql':
-            DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
-except Exception:
-    print ('Unexpected error:')
