@@ -149,6 +149,7 @@ STATICFILES_DIRS = (
 )
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
 COMPRESS_ENABLED = True;
 
 COMPRESS_PRECOMPILERS = (
