@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 import dj_database_url
 from django.core.exceptions import ImproperlyConfigured
+import local_settings import *
 
 def get_env_variable(var_name):
     """ Get the environment variable or return exception """
@@ -91,11 +92,11 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
+        'NAME': 'DATABASE_NAME',
+        'USER': 'DATABASE_USERNAME',
+        'PASSWORD': 'DATABASE_PASSWORD',
         'HOST': '127.0.0.1', # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '', # Set to empty string for default.
+        'PORT': 'DATABASE_HOST', # Set to empty string for default.
        }
     }
 DATABASES['default'] =  dj_database_url.config()

@@ -2,3 +2,4 @@ venv
 *.pyc
 statifiles
 .env
+local_settings.py
