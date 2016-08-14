@@ -89,6 +89,7 @@ DATABASES = {
         'PORT': '', # Set to empty string for default.
        }
     }
+    
 DATABASES = {'default': dj_database_url.config(default='mysql://localhost')}
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
