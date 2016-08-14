@@ -104,7 +104,9 @@ DATABASES = {
         'PORT': 'DATABASE_HOST', # Set to empty string for default.
        }
     }
-DATABASES['default'] =  dj_database_url.config()
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
