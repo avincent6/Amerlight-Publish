@@ -998,7 +998,7 @@ hr {
 
 .apps {
   height: 300px;
-  background: url('/images/countries.png?35f2cef5ab09');
+  background: url('/static/polls/images/countries.png?35f2cef5ab09');
   background-repeat: no-repeat;
   background-size: 5%; }
 
