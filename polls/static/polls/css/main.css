@@ -22,7 +22,7 @@ body {
 #image {
   width: 100%;
   height: auto;
-  background-image: url(evansville.svg);
+  background-image:none;
 
 }
 button {
@@ -445,8 +445,3 @@ h2 {
   color: white;
 }
 /* end footer */
-
-@@font-face {
-  font-family: Avenir_Next;
-  src: url(Avenir_Next.ttc);
-}
