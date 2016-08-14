@@ -167,3 +167,7 @@ STATICFILES_FINDERS = (
 CSRF_COOKIE_SECURE = True
 
 # Email form
+try:
+    from local_settings import *
+except ImportError:
+    pass
