@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 import dj_database_url
+try:
+    from local_settings import *
+except ImportError:
+    pass
+
+
 from django.core.exceptions import ImproperlyConfigured
 
 def get_env_variable(var_name):
@@ -167,7 +173,3 @@ STATICFILES_FINDERS = (
 CSRF_COOKIE_SECURE = True
 
 # Email form
-try:
-    from local_settings import *
-except ImportError:
-    pass
