@@ -159,7 +159,7 @@ STATICFILES_DIRS = (
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 COMPRESS_ENABLED = True;
-COMPRESS_OFFLINE = True;
+COMPRESS_OFFLINE = False;
 
 COMPRESS_PRECOMPILERS = (
     ('text/scss', 'sass --scss {infile} {outfile}'),
