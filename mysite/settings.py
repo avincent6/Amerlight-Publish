@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 import dj_database_url
+import environ
 try:
     from local_settings import *
 except ImportError:
@@ -20,22 +21,22 @@ except ImportError:
 
 from django.core.exceptions import ImproperlyConfigured
 
-def get_env_variable(var_name):
-    """ Get the environment variable or return exception """
-    try:
-        return os.environ[var_name]
-    except KeyError:
-        error_msg = "Set the %s environment variable" % var_name
-        raise ImproperlyConfigured(error_msg)
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, True)
+)
+
+# reading .env file
+environ.Env.read_env()
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_env_variable("SECRET_KEY")
+SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -97,11 +98,11 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'DATABASE_NAME',
-        'USER': 'DATABASE_USERNAME',
-        'PASSWORD': 'DATABASE_PASSWORD',
+        'NAME': env("DATABASE_NAME"),
+        'USER': env("DATABASE_USERNAME"),
+        'PASSWORD': env("DATABASE_PASSWORD"),
         'HOST': '127.0.0.1', # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': 'DATABASE_HOST', # Set to empty string for default.
+        'PORT': '', # Set to empty string for default.
        }
     }
 db_from_env = dj_database_url.config(conn_max_age=500)
@@ -147,13 +148,13 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'polls/static'),
+    os.path.join(BASE_DIR, 'polls/static/polls'),
 )
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
@@ -162,7 +163,7 @@ COMPRESS_ENABLED = True;
 COMPRESS_OFFLINE = False;
 
 COMPRESS_PRECOMPILERS = (
-    ('text/scss', 'sass --scss {infile} {outfile}'),
+    ('text/scss', 'sass {infile} {outfile}'),
 )
 
 STATICFILES_FINDERS = (
