@@ -176,3 +176,7 @@ STATICFILES_FINDERS = (
 CSRF_COOKIE_SECURE = True
 
 # Email form
+
+# Configure Django App for Heroku.
+import django_heroku
+django_heroku.settings(locals())
