@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     # other apps
     'compressor',
+    'sass_processor',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -171,7 +172,11 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     # other finders..
     'compressor.finders.CompressorFinder',
+    'sass_processor.finders.CssFinder',
 )
+
+# Django Sass
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR,'static')
 
 CSRF_COOKIE_SECURE = True
 
