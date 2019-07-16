@@ -7,3 +7,4 @@ django-compressor==2.0
 mysqlclient
 django-environ
 psycopg2-binary==2.8.3
+django-heroku
